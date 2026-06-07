@@ -11,6 +11,28 @@ function getComputerChoice() {
       break;
     
     case 3:
-      return 'scissors'
+      return 'scissors';
+  };
+}
+
+function getHumanChoice() {
+  return prompt('pick').toLowerCase();
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    console.log('Draw!');
+  } else if (humanChoice === 'rock' && computerChoice === 'scissors'
+    || humanChoice === 'paper' && computerChoice === 'rock'
+    || humanChoice === 'scissors' && computerChoice === 'paper'
+  ) {
+    console.log('You win!');
+    ++humanScore;
+  } else {
+    console.log('You lose!');
+    ++computerScore;
   };
 }
