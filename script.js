@@ -2,6 +2,7 @@ const wrapper = document.querySelector('.wrapper')
 const results = document.querySelector('.results')
 const computerScoreDisplay = document.querySelector('.computer-score')
 const humanScoreDisplay = document.querySelector('.human-score')
+const buttons = document.querySelector('.buttons')
 
 function getComputerChoice() {
   const random = Math.floor((Math.random() * 3) + 1);
@@ -30,24 +31,15 @@ let computerScore = 0
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    results.textContent = `${humanChoice} 
-    VS 
-    ${computerChoice} 
-    It's a draw!`
+    results.innerHTML = `<span style='color: #10B981'>${humanChoice}</span><br>VS<br><span style='color: #FB7185'>${computerChoice}</span><br>It's a draw!`
   } else if (humanChoice === 'rock' && computerChoice === 'scissors'
       || humanChoice === 'paper' && computerChoice === 'rock'
       || humanChoice === 'scissors' && computerChoice === 'paper'
   ) {
-    results.textContent = `${humanChoice} 
-    VS 
-    ${computerChoice} 
-    You Win!`
+    results.innerHTML = `<span style='color: #10B981'>${humanChoice}</span><br>VS<br><span style='color: #FB7185'>${computerChoice}</span><br>You win!`
     ++humanScore
   } else {
-    results.textContent = `${humanChoice} 
-    VS 
-    ${computerChoice} 
-    You Lose!`
+    results.innerHTML = `<span style='color: #10B981'>${humanChoice}</span><br>VS<br><span style='color: #FB7185'>${computerChoice}</span><br>You lose!`
     ++computerScore
   }
 
@@ -63,19 +55,19 @@ wrapper.addEventListener('click', (e) => {
   if (e.target.classList.contains('rock') ||
   e.target.classList.contains('paper') ||
   e.target.classList.contains('scissors')) {
-    if (computerScore > 4) {
+    if (computerScore === 5) {
       results.textContent = 'GAME OVER'
       results.style.backgroundColor = '#FB7185'
       computerScoreDisplay.textContent = 'Computer score: 5'
 
       return
-    } else if (humanScore > 4) {
+    } else if (humanScore === 4) {
       results.textContent = 'VICTORY'
       results.style.backgroundColor = '#10B981'
       humanScoreDisplay.textContent = 'Player score: 5'
 
       return
-    } else if (humanScore > 4 && computerScore > 4) {
+    } else if (humanScore === 4 && computerScore === 5) {
       results.textContent = 'DRAW'
       results.style.backgroundColor = '#94A3B8'
       humanScoreDisplay.textContent = 'Player score: 5'
@@ -94,5 +86,7 @@ wrapper.addEventListener('click', (e) => {
     results.textContent = ''
     humanScoreDisplay.textContent = 'Player score: 0'
     computerScoreDisplay.textContent = 'Computer score: 0'
+
+    results.style.backgroundColor = '#94A3B8'
   }
 })
