@@ -71,11 +71,9 @@ wrapper.addEventListener('click', (e) => {
   if (e.target.classList.contains('restart')) {
     humanScore = 0
     computerScore = 0
-
     results.textContent = ''
     humanScoreDisplay.textContent = 'Player score: 0'
     computerScoreDisplay.textContent = 'Computer score: 0'
-
     results.style.backgroundColor = '#94A3B8'
   }
 })
